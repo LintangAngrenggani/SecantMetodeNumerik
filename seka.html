@@ -557,15 +557,32 @@
       // =========================
       // KONFIGURASI GEMINI
       // =========================
-      // Hapus semua variabel API_URL di luar fungsi ini
-async function kirimKeAI(pesan) {
-    const response = await fetch('/api/chat', { 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: pesan })
-    });
-    const data = await response.json();
-    return data;
+      /// Kode ini untuk menangani tombol kirim
+async function kirimPesan() {
+    const inputElement = document.getElementById("input-pesan"); // Sesuaikan ID inputmu
+    const pesan = inputElement.value;
+    
+    if (!pesan) return; // Jika kosong, jangan lakukan apa-apa
+
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: pesan })
+        });
+
+        if (!response.ok) throw new Error("Gagal terhubung ke server");
+
+        const data = await response.json();
+        
+        // Tampilkan hasil dari AI (sesuaikan dengan elemen HTML kamu)
+        console.log("Jawaban AI:", data.candidates[0].content.parts[0].text);
+        alert(data.candidates[0].content.parts[0].text); 
+        
+    } catch (error) {
+        console.error(error);
+        alert("Pesan gagal terkirim. Pastikan folder 'api' sudah ada di GitHub.");
+    }
 }
       }
       // =========================
