@@ -1,0 +1,17 @@
+# Menyembunyikan file konfigurasi yang berisi API Key
+.env
+
+# Menyembunyikan file sistem atau folder yang dibuat otomatis oleh editor/OS
+node_modules/
+dist/
+build/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Menyembunyikan file log
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
