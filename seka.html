@@ -557,17 +557,16 @@
       // =========================
       // KONFIGURASI GEMINI
       // =========================
-      // GANTI KODE LAMA ANDA MENJADI INI:
-      async function tanyaSekaAI(pesan) {
-        const response = await fetch("/api/chat", {
-          // Memanggil file baru tadi
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: pesan }),
-        });
-
-        const result = await response.json();
-        // Tampilkan hasilnya...
+      // Hapus semua variabel API_URL di luar fungsi ini
+async function kirimKeAI(pesan) {
+    const response = await fetch('/api/chat', { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: pesan })
+    });
+    const data = await response.json();
+    return data;
+}
       }
       // =========================
       const menuToggle = document.getElementById("mobile-menu");
